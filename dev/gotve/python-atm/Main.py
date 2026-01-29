@@ -1,3 +1,5 @@
+from Person import Person
+
 def main():
     print(
         "Please choose one of available options \n"
@@ -11,3 +13,5 @@ def main():
 
 if __name__ == "__main__":
     main()
+    person = Person(17)
+    print(person.get_age())
