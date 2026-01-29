@@ -1,3 +1,6 @@
+from Person import Person
+from CreditCard import CreditCard
+
 def main():
     print(
         "Please choose one of available options \n"

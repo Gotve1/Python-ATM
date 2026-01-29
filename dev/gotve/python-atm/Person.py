@@ -1,7 +1,10 @@
+from CreditCard import CreditCard
+
+
 class Person:
 
-    def __init__(self, age):
-        self.__age = age
+    def __init__(self):
+        pass
 
     def set_age(self, age):
         self.__age = age
@@ -9,14 +12,14 @@ class Person:
     def get_age(self):
         return self.__age
 
-    def set_first_name(self, first_name):
+    def set_firstname(self, first_name):
         self.__name = first_name
 
-    def get_first_name(self):
+    def get_firstname(self):
         return self.__first_name
 
-    def set_last_name(self, last_name):
+    def set_lastname(self, last_name):
         self.__last_name = last_name
 
-    def get_last_name(self):
+    def get_lastname(self):
         return self.__last_name
