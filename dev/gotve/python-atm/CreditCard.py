@@ -8,3 +8,9 @@ class CreditCard:
 
     def get_card_number(self):
         return self.__card_number
+
+    def set_card_balance(self, balance):
+        self.__balance = balance
+
+    def get_card_balance(self):
+        return self.__balance
