@@ -1,4 +1,5 @@
 import uuid
+from enum import StrEnum
 
 
 class CreditCard:
