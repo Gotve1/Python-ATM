@@ -14,3 +14,16 @@ class CreditCard:
 
     def get_card_balance(self):
         return self.__balance
+
+    def set_credit_card_provider(self, card_provider):
+        self.__card_provider = card_provider
+
+    def get_credit_card_provider(self):
+        return self.__card_provider
+
+
+class CreditCardProvider(StrEnum):
+    KAPITAL_BANK = "Kapital Bank"
+    NATIONAL_BANK_OF_UZBEKISTAN = "NBU Bank"
+    INFIN_BANK = "Infin Bank"
+    TBC_BANK = "TBC Bank"
