@@ -1,8 +1,8 @@
 import sys
 
+from CardStorage import CardStorage
 from CreditCard import CreditCard, CreditCardProvider
 from InvalidAgeException import InvalidAgeException
-from CardStorage import CardStorage
 
 
 class ATM:
@@ -31,14 +31,13 @@ class ATM:
             case '3':
                 print("you choosed option 3")
             case '4':
-                print("you choosed option 4")
+                CardStorage.get_all_cards_by_name()
             case '5':
                 print("you choosed option 5")
             case '6':
                 sys.exit()
             case _:  # used as "default" block in java
                 print("Invalid option")
-
 
     def register_a_new_credit_card(self):
         credit_card = CreditCard()
@@ -94,7 +93,6 @@ class ATM:
 
         print("Your card has been created \n")
         CardStorage.store_card(credit_card)
-
 
     def validate_age(self, age):
         if int(age) < 18:

@@ -1,5 +1,4 @@
 class Person:
-
     __age: int
     __first_name: str
     __last_name: str
