@@ -6,6 +6,7 @@ from Person import Person
 
 
 class CreditCard(Person):
+    # two underscores from left means private
     __card_number: UUID
     __balance: int
     __card_provider: CreditCardProvider
