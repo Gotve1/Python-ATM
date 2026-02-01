@@ -57,9 +57,7 @@ def register_a_new_credit_card():
         credit_card.set_age(int(person_age))
     except ValueError:
         print("You cannot input letters in your age, please try again. \n")
-
-    print("Name your card")
-    credit_card.set_card_name(input())
+        return
 
     print(
         "Choose one of card providers \n"
