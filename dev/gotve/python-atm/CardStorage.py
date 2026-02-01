@@ -1,10 +1,14 @@
+from CreditCard import CreditCard
+
 class CardStorage:
 
     __card_storage = []
 
-    def store_card(card):
-        CardStorage.__card_storage__.append(card)
-        return CardStorage.__card_storage__
+    @classmethod # works like static methods in java
+    def store_card(cls, card):
+        cls.__card_storage.append(card)
+        return CardStorage.__card_storage
 
+    @classmethod
     def get_card(index):
-        print(CardStorage.__card_storage__[index])
+        print(CardStorage.__card_storage[index])

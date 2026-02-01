@@ -1,5 +1,9 @@
 class Person:
 
+    __age: int
+    __first_name: str
+    __last_name: str
+
     def __init__(self):
         pass
 
@@ -10,7 +14,7 @@ class Person:
         return self.__age
 
     def set_firstname(self, first_name):
-        self.__name = first_name
+        self.__first_name = first_name
 
     def get_firstname(self):
         return self.__first_name
