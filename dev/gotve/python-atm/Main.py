@@ -8,8 +8,8 @@ def main():
     print(
         "Please choose one of available options \n"
         "1. Register a new credit card \n"
-        "2. Withdraw money \n"
-        "3. Deposit money \n"
+        "2. Deposit money \n"
+        "3. Withdraw money \n"
         "4. View my cards \n"
         "5. Delete a card \n"
         "6. Exit \n"
@@ -55,7 +55,7 @@ def register_a_new_credit_card():
         "1. Kapital Bank \n"
         "2. NBU Bank \n"
         "3. Infin Bank \n"
-        "4, TBC Bank \n"
+        "4. TBC Bank \n"
     )
     credit_card = CreditCard()
     match input():
