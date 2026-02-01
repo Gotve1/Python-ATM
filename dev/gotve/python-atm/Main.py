@@ -2,8 +2,8 @@ import sys
 
 from CreditCard import CreditCard, CreditCardProvider
 from InvalidAgeException import InvalidAgeException
+from CardStorage import CardStorage
 
-global card_storage
 
 def main():
     print(
@@ -37,7 +37,6 @@ def user_input_handler():
 
 
 def register_a_new_credit_card():
-    #person = Person()
     credit_card = CreditCard()
     print("Enter your first name")
     credit_card.set_firstname(input())
@@ -77,6 +76,21 @@ def register_a_new_credit_card():
             credit_card.set_credit_card_provider(CreditCardProvider.TBC_BANK)
         case _:
             print("Invalid bank provider")
+
+    print("Name your card")
+    credit_card.set_card_name(input())
+
+    print("Add a pincode to your card")
+    try:
+        input_pincode = int(input())
+        credit_card.set_card_pincode(input_pincode)
+    except ValueError:
+        print("Cannot use letters or special characters in pincode \n")
+        return
+
+    print("Your card has been created \n")
+    CardStorage.store_card(credit_card)
+
 
 def validate_age(age):
     if int(age) < 18:
