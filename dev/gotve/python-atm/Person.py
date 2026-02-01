@@ -1,6 +1,3 @@
-from CreditCard import CreditCard
-
-
 class Person:
 
     def __init__(self):
