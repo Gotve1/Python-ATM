@@ -17,7 +17,7 @@ class ATM:
             "1. Register a new credit card \n"
             "2. Deposit money \n"
             "3. Withdraw money \n"
-            "4. View my cards \n"
+            "4. View cards \n"
             "5. Delete a card \n"
             "6. Exit \n"
         )
@@ -27,11 +27,11 @@ class ATM:
             case '1':
                 self.register_a_new_credit_card()
             case '2':
-                print("you choosed option 2")
+                self.deposit()
             case '3':
                 print("you choosed option 3")
             case '4':
-                CardStorage.get_all_cards_by_name()
+                CardStorage.print_all_cards()
             case '5':
                 print("you choosed option 5")
             case '6':
@@ -66,7 +66,7 @@ class ATM:
             "1. Kapital Bank \n"
             "2. NBU Bank \n"
             "3. Infin Bank \n"
-            "4. TBC Bank \n"
+            "4. TBC Bank"
         )
         match input():
             case '1':
@@ -93,6 +93,14 @@ class ATM:
 
         print("Your card has been created \n")
         CardStorage.store_card(credit_card)
+
+    def deposit(self):
+        if not CardStorage.get_card_storage():
+            print("No cards available \n")
+            return
+        else:
+            print("Choose one of available cards")
+            CardStorage.get_card_by_id(int(input()))
 
     def validate_age(self, age):
         if int(age) < 18:
