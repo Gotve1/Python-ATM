@@ -26,8 +26,9 @@ class CardStorage:
     def print_all_cards(cls):
         for card in cls.get_all_cards():
             print(
-                f"Card number: {card.get_card_number()}, \n",
-                f"Card balance: {card.get_card_balance()}, \n",
+                f"Card number: {card.get_card_number()} \n",
+                f"Card owner: {card.get_firstname(), card.get_lastname()} \n",
+                f"Card balance: {card.get_card_balance()} \n",
                 f"Card provider: {card.get_credit_card_provider()} \n",
                 f"Card name: {card.get_card_name()} \n"
             )

@@ -1,13 +1,17 @@
 from ATM import ATM
 from CardStorage import CardStorage
-from CreditCard import CreditCardProvider
+from CreditCard import CreditCardProvider, CreditCard
+
 
 def main():
-    blank_card = lambda CreditCard : (
-        blank_card.set_age(18),
-        blank_card.set_credit_card_provider(CreditCardProvider.KAPITAL_BANK),
-        blank_card.set_card_name("Blank Card"),
-        blank_card.set_card_pincode(2008)
+    blank_card = (
+        CreditCard()
+        .set_age(18)
+        .set_firstname("John")
+        .set_lastname("Doe")
+        .set_credit_card_provider(CreditCardProvider.KAPITAL_BANK)
+        .set_card_name("Blank Card")
+        .set_card_pincode(2008)
     )
     CardStorage.store_card(blank_card)
     ATM()
