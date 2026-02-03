@@ -29,7 +29,8 @@ class ATM:
             case '2':
                 self.deposit()
             case '3':
-                print("you choosed option 3")
+                # self.withdraw()
+                print("")
             case '4':
                 CardStorage.print_all_cards()
             case '5':
@@ -114,13 +115,28 @@ class ATM:
             print("No cards available \n")
             return
         else:
-            CardStorage.print_all_cards()
-            print("Select a card to make a deposit (by index)")
-            card_id = int(input())
-            print("How much money do you want to deposit")
-            amount_of_money = int(input())
-            CardStorage.deposit_money(card_id, amount_of_money)
-            print("Operation succeed! \n")
+            while True:
+                CardStorage.print_all_cards()
+                print("Select a card to make a deposit (by index)")
+
+                try:
+                    card_index = int(input())
+                except ValueError:
+                    print("Cannot use letters as an index.\n")
+                    break
+
+                print("How much money do you want to deposit")
+
+                try:
+                    amount_of_money = int(input())
+                except ValueError:
+                    print("Cannot use letters as amount of money.\n")
+                    break
+
+                CardStorage.deposit_money(card_index, amount_of_money)
+                print("Operation succeed! \n")
+
+    # def withdraw(self):
 
     def validate_age(self, age):
         if int(age) < 18:

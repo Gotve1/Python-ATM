@@ -1,5 +1,6 @@
 from CreditCard import CreditCard
 
+
 class CardStorage(CreditCard):
     __card_storage = []
 
@@ -13,7 +14,7 @@ class CardStorage(CreditCard):
         return cls.__card_storage
 
     @classmethod
-    def get_card_by_id(cls, index):
+    def get_card_by_index(cls, index):
         return cls.__card_storage[index]
 
     @classmethod
@@ -21,13 +22,19 @@ class CardStorage(CreditCard):
         return cls.__card_storage
 
     @classmethod
-    def deposit_money(cls, card_id, amound_of_money):
+    def deposit_money(cls, card_index, amound_of_money):
         try:
-            selected_card = cls.get_card_by_id(card_id)
+            selected_card = cls.get_card_by_index(card_index)
             CreditCard.set_card_balance(selected_card, amound_of_money)
         except IndexError:
             print("Selected wrong card, operation terminated.")
 
+    @classmethod
+    def withdraw(cls, card_index, amount_of_money):
+        CreditCard.get_card_balance(card_index) - amount_of_money
+
+        if CreditCard.get_card_balance(card_index) - amount_of_money <= 0:
+            print("Not enough money try lower amount")
 
     @classmethod
     def print_all_cards(cls):
@@ -36,7 +43,4 @@ class CardStorage(CreditCard):
                 f"Index: {index} \n"
                 f"Card number: {card.get_card_number()} \n",
                 f"Card owner: {card.get_firstname(), card.get_lastname()} \n",
-                f"Card balance: {card.get_card_balance()} \n",
-                f"Card provider: {card.get_credit_card_provider()} \n",
-                f"Card name: {card.get_card_name()} \n"
             )
