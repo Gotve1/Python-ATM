@@ -68,30 +68,45 @@ class ATM:
             "3. Infin Bank \n"
             "4. TBC Bank"
         )
-        match input():
-            case '1':
-                credit_card.set_credit_card_provider(CreditCardProvider.KAPITAL_BANK)
-            case '2':
-                credit_card.set_credit_card_provider(CreditCardProvider.NATIONAL_BANK_OF_UZBEKISTAN)
-            case '3':
-                credit_card.set_credit_card_provider(CreditCardProvider.INFIN_BANK)
-            case '4':
-                credit_card.set_credit_card_provider(CreditCardProvider.TBC_BANK)
-            case _:
-                print("Invalid bank provider")
+        while True:
+            match input():
+                case '1':
+                    credit_card.set_credit_card_provider(CreditCardProvider.KAPITAL_BANK)
+                    break
+                case '2':
+                    credit_card.set_credit_card_provider(CreditCardProvider.NATIONAL_BANK_OF_UZBEKISTAN)
+                    break
+                case '3':
+                    credit_card.set_credit_card_provider(CreditCardProvider.INFIN_BANK)
+                    break
+                case '4':
+                    credit_card.set_credit_card_provider(CreditCardProvider.TBC_BANK)
+                    break
+                case _:
+                    print(
+                        "Invalid bank provider select one of available card providers: \n"
+                        "1. Kapital Bank \n"
+                        "2. NBU Bank \n"
+                        "3. Infin Bank \n"
+                        "4. TBC Bank"
+                    )
 
         print("Name your card")
         credit_card.set_card_name(input())
 
-        print("Add a pincode to your card")
-        try:
-            input_pincode = int(input())
-            credit_card.set_card_pincode(input_pincode)
-        except ValueError:
-            print("Cannot use letters or special characters in pincode \n")
-            return
+        print("Add a pincode to your card (numbers only)")
+        while True:
+            try:
+                input_pincode = int(input())
+                credit_card.set_card_pincode(input_pincode)
+                break
+            except ValueError:
+                print(
+                    "Cannot use letters or special characters in pincode \n"
+                    "Please try again"
+                )
 
-        print("Your card has been created \n")
+        print("Your card has been created successfully!\n")
         CardStorage.store_card(credit_card)
 
     def deposit(self):
