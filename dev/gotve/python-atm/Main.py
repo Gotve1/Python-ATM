@@ -4,6 +4,10 @@ from CreditCard import CreditCardProvider, CreditCard
 
 
 def main():
+    ATM()
+
+
+if __name__ == "__main__":
     blank_card = (
         CreditCard()
         .set_age(18)
@@ -14,9 +18,5 @@ def main():
         .set_card_pincode(2008)
     )
     CardStorage.store_card(blank_card)
-    ATM()
-
-
-if __name__ == "__main__":
     while True:
         main()

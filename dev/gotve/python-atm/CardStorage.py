@@ -1,4 +1,6 @@
-class CardStorage:
+from CreditCard import CreditCard
+
+class CardStorage(CreditCard):
     __card_storage = []
 
     @classmethod
@@ -19,13 +21,19 @@ class CardStorage:
         return cls.__card_storage
 
     @classmethod
-    def length(cls):
-        return cls.__card_storage.__len__()
+    def deposit_money(cls, card_id, amound_of_money):
+        try:
+            selected_card = cls.get_card_by_id(card_id)
+            CreditCard.set_card_balance(selected_card, amound_of_money)
+        except IndexError:
+            print("Selected wrong card, operation terminated.")
+
 
     @classmethod
     def print_all_cards(cls):
-        for card in cls.get_all_cards():
+        for index, card in enumerate(cls.get_all_cards()):
             print(
+                f"Index: {index} \n"
                 f"Card number: {card.get_card_number()} \n",
                 f"Card owner: {card.get_firstname(), card.get_lastname()} \n",
                 f"Card balance: {card.get_card_balance()} \n",

@@ -99,8 +99,13 @@ class ATM:
             print("No cards available \n")
             return
         else:
-            print("Choose one of available cards")
-            CardStorage.get_card_by_id(int(input()))
+            CardStorage.print_all_cards()
+            print("Select a card to make a deposit (by index)")
+            card_id = int(input())
+            print("How much money do you want to deposit")
+            amount_of_money = int(input())
+            CardStorage.deposit_money(card_id, amount_of_money)
+            print("Operation succeed! \n")
 
     def validate_age(self, age):
         if int(age) < 18:
