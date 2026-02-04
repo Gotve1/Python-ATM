@@ -3,6 +3,7 @@ import sys
 from CardStorage import CardStorage
 from CreditCard import CreditCard, CreditCardProvider
 from InvalidAgeException import InvalidAgeException
+from NegativeAmountOfMoney import NegativeAmountOfMoney
 from MessageProvider import MessageProvider
 
 
@@ -82,7 +83,7 @@ class ATM:
             try:
                 input_pincode = int(input())
                 credit_card.set_card_pincode(input_pincode)
-                return
+                break
             except ValueError:
                 MessageProvider.invalid_input_message()
 
@@ -102,19 +103,28 @@ class ATM:
                     card_index = int(input())
                 except ValueError:
                     print("Cannot use letters as an index.\n")
-                    return
+                    break
 
                 print("How much money do you want to deposit")
 
                 try:
                     amount_of_money = int(input())
+
+                    if amount_of_money <= 0:
+                        raise NegativeAmountOfMoney
+
+                    selected_card = CardStorage.get_card_by_index(card_index)
+                    new_balance = selected_card.get_card_balance() + amount_of_money
                 except ValueError:
                     print("Cannot use letters as amount of money.\n")
-                    return
+                    break
+                except NegativeAmountOfMoney:
+                    print("Cannot deposit a negative amount of money")
+                    break
 
-                CardStorage.deposit_money(card_index, amount_of_money)
+                CardStorage.deposit_money(card_index, new_balance)
                 print("Operation succeed! \n")
-                return
+                break
 
     def withdraw(self):
         while True:
@@ -125,7 +135,7 @@ class ATM:
                 input_card = int(input())
             except ValueError:
                 MessageProvider.invalid_input_message()
-                return
+                break
 
             print("Enter the pincode")
             try:
@@ -135,7 +145,7 @@ class ATM:
                     print("Pincode correct")
                 else:
                     print("Invalid pincode, please try again")
-                    return
+                    break
             except ValueError:
                 MessageProvider.invalid_input_message()
                 return
@@ -159,21 +169,21 @@ class ATM:
                 selected_card = int(input())
             except ValueError:
                 MessageProvider.invalid_input_message()
-                return
+                break
 
             print("Enter a password")
             try:
                 pincode_input = int(input())
             except ValueError:
                 MessageProvider.invalid_input_message()
-                return
+                break
 
             if pincode_input == CardStorage.get_card_pincode(selected_card):
                 CardStorage.delete_card(selected_card)
-                return
+                break
 
 
-def validate_age(self, age):
-    if int(age) < 18:
-        print("You are too young to own a credit card \n")
-        raise InvalidAgeException
+    def validate_age(self, age):
+        if int(age) < 18:
+            print("You are too young to own a credit card \n")
+            raise InvalidAgeException
