@@ -27,6 +27,10 @@ class CardStorage(CreditCard):
         return selected_card.get_pincode()
 
     @classmethod
+    def delete_card(cls, index):
+        cls.__card_storage.pop(index)
+
+    @classmethod
     def deposit_money(cls, card_index, amound_of_money):
         try:
             selected_card = cls.get_card_by_index(card_index)
@@ -43,7 +47,7 @@ class CardStorage(CreditCard):
             print("Not enough money")
         else:
             selected_card.set_card_balance(current_balance - amount_of_money)
-            print("Withdraw succeed")
+            print("Withdraw succeed \n")
 
     @classmethod
     def print_all_cards(cls):

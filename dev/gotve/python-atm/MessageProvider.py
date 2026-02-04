@@ -25,7 +25,7 @@ class MessageProvider():
     @classmethod
     def invalid_input_message(cls):
         print(
-            "Cannot use letters or special characters, please try again."
+            "Cannot use letters or special characters, please try again.\n"
         )
 
     @classmethod

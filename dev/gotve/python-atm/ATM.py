@@ -23,15 +23,14 @@ class ATM:
                 self.deposit()
             case '3':
                 self.withdraw()
-                print("")
             case '4':
                 CardStorage.print_all_cards()
             case '5':
-                print("you choosed option 5")
+                self.delete_a_card()
             case '6':
                 sys.exit()
             case _:  # used as "default" block like in java
-                print("Invalid option")
+                print("Invalid option \n")
 
     def register_a_new_credit_card(self):
         credit_card = CreditCard()
@@ -83,7 +82,7 @@ class ATM:
             try:
                 input_pincode = int(input())
                 credit_card.set_card_pincode(input_pincode)
-                break
+                return
             except ValueError:
                 MessageProvider.invalid_input_message()
 
@@ -103,7 +102,7 @@ class ATM:
                     card_index = int(input())
                 except ValueError:
                     print("Cannot use letters as an index.\n")
-                    break
+                    return
 
                 print("How much money do you want to deposit")
 
@@ -111,11 +110,11 @@ class ATM:
                     amount_of_money = int(input())
                 except ValueError:
                     print("Cannot use letters as amount of money.\n")
-                    break
+                    return
 
                 CardStorage.deposit_money(card_index, amount_of_money)
                 print("Operation succeed! \n")
-                break
+                return
 
     def withdraw(self):
         while True:
@@ -126,7 +125,7 @@ class ATM:
                 input_card = int(input())
             except ValueError:
                 MessageProvider.invalid_input_message()
-                break
+                return
 
             print("Enter the pincode")
             try:
@@ -136,22 +135,45 @@ class ATM:
                     print("Pincode correct")
                 else:
                     print("Invalid pincode, please try again")
-                    break
+                    return
             except ValueError:
                 MessageProvider.invalid_input_message()
-                break
+                return
 
             print("Choose amount of money to withdraw")
             try:
                 withdraw_amount = int(input())
             except ValueError:
                 MessageProvider.invalid_input_message()
-                break
+                return
 
             CardStorage.withdraw(input_card, withdraw_amount)
-            break
+            return
 
-    def validate_age(self, age):
-        if int(age) < 18:
-            print("You are too young to own a credit card \n")
-            raise InvalidAgeException
+    def delete_a_card(self):
+        CardStorage.print_all_cards()
+        MessageProvider.select_card_by_index()
+
+        while True:
+            try:
+                selected_card = int(input())
+            except ValueError:
+                MessageProvider.invalid_input_message()
+                return
+
+            print("Enter a password")
+            try:
+                pincode_input = int(input())
+            except ValueError:
+                MessageProvider.invalid_input_message()
+                return
+
+            if pincode_input == CardStorage.get_card_pincode(selected_card):
+                CardStorage.delete_card(selected_card)
+                return
+
+
+def validate_age(self, age):
+    if int(age) < 18:
+        print("You are too young to own a credit card \n")
+        raise InvalidAgeException
