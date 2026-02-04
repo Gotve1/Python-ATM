@@ -3,6 +3,7 @@ import sys
 from CardStorage import CardStorage
 from CreditCard import CreditCard, CreditCardProvider
 from InvalidAgeException import InvalidAgeException
+from MessageProvider import MessageProvider
 
 
 class ATM:
@@ -12,15 +13,7 @@ class ATM:
         self.user_input_handler()
 
     def show_main_message(self):
-        print(
-            "Please choose one of available options \n"
-            "1. Register a new credit card \n"
-            "2. Deposit money \n"
-            "3. Withdraw money \n"
-            "4. View cards \n"
-            "5. Delete a card \n"
-            "6. Exit \n"
-        )
+        MessageProvider.main_menu_message()
 
     def user_input_handler(self):
         match input():
@@ -62,13 +55,8 @@ class ATM:
             print("You cannot input letters in your age, please try again. \n")
             return
 
-        print(
-            "Choose one of card providers \n"
-            "1. Kapital Bank \n"
-            "2. NBU Bank \n"
-            "3. Infin Bank \n"
-            "4. TBC Bank"
-        )
+        MessageProvider.card_providers_message()
+
         while True:
             match input():
                 case '1':
@@ -84,13 +72,8 @@ class ATM:
                     credit_card.set_credit_card_provider(CreditCardProvider.TBC_BANK)
                     break
                 case _:
-                    print(
-                        "Invalid bank provider select one of available card providers: \n"
-                        "1. Kapital Bank \n"
-                        "2. NBU Bank \n"
-                        "3. Infin Bank \n"
-                        "4. TBC Bank"
-                    )
+                    print("Invalid provider1")
+                    MessageProvider.card_providers_message()
 
         print("Name your card")
         credit_card.set_card_name(input())
@@ -102,10 +85,7 @@ class ATM:
                 credit_card.set_card_pincode(input_pincode)
                 break
             except ValueError:
-                print(
-                    "Cannot use letters or special characters in pincode \n"
-                    "Please try again"
-                )
+                MessageProvider.invalid_input_message()
 
         print("Your card has been created successfully!\n")
         CardStorage.store_card(credit_card)
