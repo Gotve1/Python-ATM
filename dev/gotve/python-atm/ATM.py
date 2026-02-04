@@ -22,7 +22,7 @@ class ATM:
             case '2':
                 self.deposit()
             case '3':
-                # self.withdraw()
+                self.withdraw()
                 print("")
             case '4':
                 CardStorage.print_all_cards()
@@ -30,7 +30,7 @@ class ATM:
                 print("you choosed option 5")
             case '6':
                 sys.exit()
-            case _:  # used as "default" block in java
+            case _:  # used as "default" block like in java
                 print("Invalid option")
 
     def register_a_new_credit_card(self):
@@ -97,7 +97,7 @@ class ATM:
         else:
             while True:
                 CardStorage.print_all_cards()
-                print("Select a card to make a deposit (by index)")
+                MessageProvider.select_card_by_index()
 
                 try:
                     card_index = int(input())
@@ -115,8 +115,41 @@ class ATM:
 
                 CardStorage.deposit_money(card_index, amount_of_money)
                 print("Operation succeed! \n")
+                break
 
-    # def withdraw(self):
+    def withdraw(self):
+        while True:
+            CardStorage.print_all_cards()
+            MessageProvider.select_card_by_index()
+
+            try:
+                input_card = int(input())
+            except ValueError:
+                MessageProvider.invalid_input_message()
+                break
+
+            print("Enter the pincode")
+            try:
+                pincode_input = int(input())
+
+                if pincode_input == CardStorage.get_card_pincode(input_card):
+                    print("Pincode correct")
+                else:
+                    print("Invalid pincode, please try again")
+                    break
+            except ValueError:
+                MessageProvider.invalid_input_message()
+                break
+
+            print("Choose amount of money to withdraw")
+            try:
+                withdraw_amount = int(input())
+            except ValueError:
+                MessageProvider.invalid_input_message()
+                break
+
+            CardStorage.withdraw(input_card, withdraw_amount)
+            break
 
     def validate_age(self, age):
         if int(age) < 18:

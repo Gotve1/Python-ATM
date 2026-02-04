@@ -22,6 +22,11 @@ class CardStorage(CreditCard):
         return cls.__card_storage
 
     @classmethod
+    def get_card_pincode(cls, index):
+        selected_card = cls.get_card_by_index(index)
+        return selected_card.get_pincode()
+
+    @classmethod
     def deposit_money(cls, card_index, amound_of_money):
         try:
             selected_card = cls.get_card_by_index(card_index)
@@ -31,10 +36,14 @@ class CardStorage(CreditCard):
 
     @classmethod
     def withdraw(cls, card_index, amount_of_money):
-        CreditCard.get_card_balance(card_index) - amount_of_money
+        selected_card = cls.get_card_by_index(card_index)
+        current_balance = selected_card.get_card_balance()
 
-        if CreditCard.get_card_balance(card_index) - amount_of_money <= 0:
-            print("Not enough money try lower amount")
+        if current_balance <= 0:
+            print("Not enough money")
+        else:
+            selected_card.set_card_balance(current_balance - amount_of_money)
+            print("Withdraw succeed")
 
     @classmethod
     def print_all_cards(cls):
@@ -43,4 +52,5 @@ class CardStorage(CreditCard):
                 f"Index: {index} \n"
                 f"Card number: {card.get_card_number()} \n",
                 f"Card owner: {card.get_firstname(), card.get_lastname()} \n",
+                f"Money: {card.get_card_balance()} \n"
             )

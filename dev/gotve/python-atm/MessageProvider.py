@@ -25,6 +25,9 @@ class MessageProvider():
     @classmethod
     def invalid_input_message(cls):
         print(
-            "Cannot use letters or special characters in pincode \n"
-            "Please try again"
+            "Cannot use letters or special characters, please try again."
         )
+
+    @classmethod
+    def select_card_by_index(cls):
+        print("Select one of available cards")
