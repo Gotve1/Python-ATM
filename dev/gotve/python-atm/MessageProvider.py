@@ -3,6 +3,7 @@ class MessageProvider():
     @classmethod
     def main_menu_message(cls):
         print(
+            "\n"
             "Please choose one of available options \n"
             "1. Register a new credit card \n"
             "2. Deposit money \n"
