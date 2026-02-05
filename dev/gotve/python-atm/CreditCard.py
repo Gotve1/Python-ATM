@@ -10,38 +10,46 @@ class CreditCard(Person):
     def __init__(self):
         super().__init__()
         self.__card_number = uuid.uuid4()
-        self.__balance = 0
+        self.__card_balance = 0
+        self.__card_provider = CreditCardProvider
+        self.__card_name = ""
+        self.__pincode = 0
 
-    def get_card_number(self):
+    @property
+    def card_number(self):
         return self.__card_number
 
-    def set_card_balance(self, balance):
-        self.__balance = balance
-        return self
+    @property
+    def card_balance(self):
+        return self.__card_balance
 
-    def get_card_balance(self):
-        return self.__balance
+    @card_balance.setter
+    def card_balance(self, card_balance):
+        self.__card_balance = card_balance
 
-    def set_credit_card_provider(self, card_provider):
-        self.__card_provider = card_provider
-        return self
-
-    def get_credit_card_provider(self):
+    @property
+    def credit_card_provider(self):
         return self.__card_provider
 
-    def set_card_name(self, card_name):
-        self.__card_name = card_name
-        return self
+    @credit_card_provider.setter
+    def credit_card_provider(self, card_provider):
+        self.__card_provider = card_provider
 
-    def get_card_name(self):
+    @property
+    def card_name(self):
         return self.__card_name
 
-    def set_card_pincode(self, pincode):
-        self.__pincode = pincode
-        return self
+    @card_name.setter
+    def card_name(self, card_name):
+        self.__card_name = card_name
 
-    def get_pincode(self):
+    @property
+    def pincode(self):
         return self.__pincode
+
+    @pincode.setter
+    def pincode(self, pincode):
+        self.__pincode = pincode
 
 
 class CreditCardProvider(StrEnum):

@@ -30,16 +30,16 @@ class ATM:
                 self.delete_a_card()
             case '6':
                 sys.exit()
-            case _:  # used as "default" block like in java
+            case _:  # used as a "default" block like in java
                 print("Invalid option \n")
 
     def register_a_new_credit_card(self):
         credit_card = CreditCard()
         print("Enter your first name")
-        credit_card.firstname(input())
+        credit_card.firstname = input()
 
         print("Enter your last name")
-        credit_card.lastname(input())
+        credit_card.lastname = input()
 
         try:
             print("Enter your age")
@@ -50,7 +50,7 @@ class ATM:
             except InvalidAgeException:
                 return
 
-            credit_card.age(int(person_age))
+            credit_card.age = int(person_age)
         except ValueError:
             print("You cannot input letters in your age, please try again. \n")
             return
@@ -60,29 +60,28 @@ class ATM:
         while True:
             match input():
                 case '1':
-                    credit_card.set_credit_card_provider(CreditCardProvider.KAPITAL_BANK)
+                    credit_card.credit_card_provider = CreditCardProvider.KAPITAL_BANK
                     break
                 case '2':
-                    credit_card.set_credit_card_provider(CreditCardProvider.NATIONAL_BANK_OF_UZBEKISTAN)
+                    credit_card.credit_card_provider = CreditCardProvider.NATIONAL_BANK_OF_UZBEKISTAN
                     break
                 case '3':
-                    credit_card.set_credit_card_provider(CreditCardProvider.INFIN_BANK)
+                    credit_card.credit_card_provider = CreditCardProvider.INFIN_BANK
                     break
                 case '4':
-                    credit_card.set_credit_card_provider(CreditCardProvider.TBC_BANK)
+                    credit_card.credit_card_provider = CreditCardProvider.TBC_BANK
                     break
                 case _:
                     print("Invalid provider1")
                     MessageProvider.card_providers_message()
 
         print("Name your card")
-        credit_card.set_card_name(input())
+        credit_card.card_name = input()
 
         print("Add a pincode to your card (numbers only)")
         while True:
             try:
-                input_pincode = int(input())
-                credit_card.set_card_pincode(input_pincode)
+                credit_card.pincode = int(input())
                 break
             except ValueError:
                 MessageProvider.invalid_input_message()
@@ -114,7 +113,7 @@ class ATM:
                         raise NegativeAmountOfMoney
 
                     selected_card = CardStorage.get_card_by_index(card_index)
-                    new_balance = selected_card.get_card_balance() + amount_of_money
+                    new_balance = selected_card.card_balance + amount_of_money
                 except ValueError:
                     print("Cannot use letters as amount of money.\n")
                     break
