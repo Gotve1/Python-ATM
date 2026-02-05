@@ -36,10 +36,10 @@ class ATM:
     def register_a_new_credit_card(self):
         credit_card = CreditCard()
         print("Enter your first name")
-        credit_card.set_firstname(input())
+        credit_card.firstname(input())
 
         print("Enter your last name")
-        credit_card.set_lastname(input())
+        credit_card.lastname(input())
 
         try:
             print("Enter your age")
@@ -50,7 +50,7 @@ class ATM:
             except InvalidAgeException:
                 return
 
-            credit_card.set_age(int(person_age))
+            credit_card.age(int(person_age))
         except ValueError:
             print("You cannot input letters in your age, please try again. \n")
             return

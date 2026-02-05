@@ -55,6 +55,6 @@ class CardStorage(CreditCard):
             print(
                 f"Index: {index} \n"
                 f"Card number: {card.get_card_number()} \n",
-                f"Card owner: {card.get_firstname(), card.get_lastname()} \n",
+                f"Card owner: {card.firstname} {card.lastname} \n",
                 f"Money: {card.get_card_balance()} \n"
             )
