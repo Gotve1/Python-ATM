@@ -1,8 +1,8 @@
 class CardStorage:
     __card_storage = []
 
-    @classmethod
-    def get_card_storage(cls):
+    @property
+    def card_storage(cls):
         return cls.__card_storage
 
     @classmethod  # works like static methods in java
@@ -13,10 +13,6 @@ class CardStorage:
     @classmethod
     def get_card_by_index(cls, index):
         return cls.__card_storage[index]
-
-    @classmethod
-    def get_all_cards(cls):
-        return cls.__card_storage
 
     @classmethod
     def get_card_pincode(cls, index):
@@ -52,7 +48,7 @@ class CardStorage:
 
     @classmethod
     def print_all_cards(cls):
-        for index, card in enumerate(cls.get_all_cards()):
+        for index, card in enumerate(cls.card_storage):
             print(
                 f"Index: {index} \n"
                 f"Card number: {card.card_number} \n"

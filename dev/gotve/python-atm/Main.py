@@ -8,7 +8,7 @@ def main():
 
 def pre_init():
 
-    blank_card = CreditCard
+    blank_card = CreditCard()
     blank_card.age = 18
     blank_card.firstname = 'John'
     blank_card.lastname = 'Doe'

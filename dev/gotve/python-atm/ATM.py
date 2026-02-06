@@ -90,7 +90,7 @@ class ATM:
         CardStorage.store_card(credit_card)
 
     def deposit(self):
-        if not CardStorage.get_card_storage():
+        if not CardStorage.card_storage:
             print("No cards available \n")
             return
         else:
